@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 32" width="200" height="32" role="img" aria-label="Recreational Time">
+  
+  
+  
+  <rect x="0" y="0" width="6" height="32" fill="#0066b1"></rect>
+  <rect x="6" y="0" width="6" height="32" fill="#1c69d4"></rect>
+  <rect x="12" y="0" width="6" height="32" fill="#e22718"></rect>
+  
+  <text x="28" y="20" class="rt-wm">RECREATIONAL</text>
+  <text x="128" y="20" class="rt-wm rt-wm-light">TIME</text>
+</svg>

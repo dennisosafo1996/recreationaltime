@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-label="RT roundel">
+  
+  <defs>
+    <clipPath id="rt-roundel-clip">
+      <circle cx="32" cy="32" r="32"></circle>
+    </clipPath>
+  </defs>
+  <g clip-path="url(#rt-roundel-clip)">
+    
+    <rect x="0" y="0" width="64" height="64" fill="#000"></rect>
+    
+    <rect x="0" y="29" width="21.33" height="6" fill="#0066b1"></rect>
+    <rect x="21.33" y="29" width="21.33" height="6" fill="#1c69d4"></rect>
+    <rect x="42.66" y="29" width="21.34" height="6" fill="#e22718"></rect>
+    
+    <g font-family="Inter, BMWTypeNextLatin, -apple-system, sans-serif" font-weight="700" fill="#fff">
+      <text x="32" y="22" font-size="18" letter-spacing="0" text-anchor="middle">RT</text>
+      <text x="32" y="53" font-size="6" letter-spacing="1" text-anchor="middle" fill="#bbbbbb">RECREATIONAL TIME</text>
+    </g>
+  </g>
+  
+  <circle cx="32" cy="32" r="31.5" fill="none" stroke="#3c3c3c" stroke-width="1"></circle>
+</svg>

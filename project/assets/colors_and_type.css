@@ -1,0 +1,433 @@
+/* ============================================================
+ * Recreational Time — colors & type tokens
+ * Canonical token sheet. Import this into any HTML artifact.
+ * Brand language adapted from BMW M motorsport-engineering spec.
+ * ============================================================ */
+
+/* ------------------------------------------------------------
+ * Fonts
+ * BMW Type Next Latin is the brand face. It is NOT bundled
+ * (licensed typeface). Working substitute: Inter (variable),
+ * pulled from Google Fonts.
+ *
+ * To swap in the real face: replace this @import with @font-face
+ * blocks pointing at the woff2 files in fonts/, keeping the
+ * family names "RT Display" and "RT Text" intact.
+ * ------------------------------------------------------------ */
+
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700;900&display=swap");
+
+@font-face {
+  font-family: "RT Display";
+  src: local("Inter"), local("BMWTypeNextLatin");
+  font-weight: 100 900;
+  font-style: normal;
+}
+@font-face {
+  font-family: "RT Text";
+  src: local("Inter"), local("BMWTypeNextLatin Light"), local("BMWTypeNextLatin");
+  font-weight: 100 900;
+  font-style: normal;
+}
+
+/* ============================================================
+ * TOKENS
+ * ============================================================ */
+
+:root {
+  /* -----------------------------------------------------------
+   * COLOR — Brand & Accent
+   * The RT tricolor (m-blue-light → m-blue-dark → m-red) is the
+   * ONLY chromatic accent. Never use as a button fill or surface.
+   * ----------------------------------------------------------- */
+  --rt-primary:           #ffffff;
+  --rt-m-blue-light:      #0066b1;
+  --rt-m-blue-dark:       #1c69d4;
+  --rt-m-red:             #e22718;
+  --rt-bmw-blue:          #1c69d4;   /* heritage standalone blue */
+  --rt-electric-blue:     #0653b6;   /* EV-only accent */
+
+  /* The tricolor as a single gradient — for stripe dividers, accents */
+  --rt-tricolor: linear-gradient(
+    to right,
+    #0066b1 0%, #0066b1 33.33%,
+    #1c69d4 33.33%, #1c69d4 66.66%,
+    #e22718 66.66%, #e22718 100%
+  );
+
+  /* -----------------------------------------------------------
+   * COLOR — Surface (step-elevations of black)
+   * ----------------------------------------------------------- */
+  --rt-canvas:            #000000;   /* default page floor */
+  --rt-surface-soft:      #0d0d0d;   /* spec table cells, footer-adjacent */
+  --rt-surface-card:      #1a1a1a;   /* cards, secondary buttons */
+  --rt-surface-elevated:  #262626;   /* nested cards inside dark bands */
+  --rt-carbon-gray:       #2b2b2b;   /* technical-spec surface tone */
+
+  /* -----------------------------------------------------------
+   * COLOR — Hairlines & Borders
+   * ----------------------------------------------------------- */
+  --rt-hairline:          #3c3c3c;
+  --rt-hairline-strong:   #262626;
+
+  /* -----------------------------------------------------------
+   * COLOR — Ink / Text
+   * ----------------------------------------------------------- */
+  --rt-ink:               #ffffff;
+  --rt-on-dark:           #ffffff;
+  --rt-on-primary:        #000000;   /* on white surfaces (rare) */
+  --rt-body:              #bbbbbb;
+  --rt-body-strong:       #e6e6e6;
+  --rt-muted:             #7e7e7e;
+
+  /* -----------------------------------------------------------
+   * COLOR — Semantic
+   * ----------------------------------------------------------- */
+  --rt-warning:           #f4b400;
+  --rt-success:           #0fa336;
+
+  /* -----------------------------------------------------------
+   * RADIUS — Binary: almost always 0, sometimes circular.
+   * ----------------------------------------------------------- */
+  --rt-radius-none:       0px;
+  --rt-radius-xs:         2px;
+  --rt-radius-sm:         4px;
+  --rt-radius-md:         6px;
+  --rt-radius-full:       9999px;
+
+  /* -----------------------------------------------------------
+   * SPACING — 4px base unit. Grid-aligned, generous.
+   * ----------------------------------------------------------- */
+  --rt-space-xxs:         4px;
+  --rt-space-xs:          8px;
+  --rt-space-sm:          12px;
+  --rt-space-md:          16px;
+  --rt-space-lg:          24px;
+  --rt-space-xl:          40px;
+  --rt-space-xxl:         64px;
+  --rt-space-section:     96px;
+
+  /* -----------------------------------------------------------
+   * TYPE — family stacks
+   * ----------------------------------------------------------- */
+  --rt-font-display: "RT Display", "BMWTypeNextLatin", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --rt-font-text:    "RT Text", "BMWTypeNextLatin Light", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* -----------------------------------------------------------
+   * TYPE — scale (raw)
+   * Heavy display (700) against very light body (300) is the
+   * editorial signature. Never blur it with 400 or 500.
+   * ----------------------------------------------------------- */
+  --rt-display-xl-size:    80px;
+  --rt-display-lg-size:    56px;
+  --rt-display-md-size:    40px;
+  --rt-display-sm-size:    32px;
+  --rt-title-lg-size:      24px;
+  --rt-title-md-size:      20px;
+  --rt-title-sm-size:      18px;
+  --rt-body-md-size:       16px;
+  --rt-body-sm-size:       14px;
+  --rt-caption-size:       12px;
+  --rt-label-size:         14px;
+  --rt-button-size:        14px;
+
+  --rt-weight-display:     700;
+  --rt-weight-title:       700;
+  --rt-weight-subtitle:    400;
+  --rt-weight-body:        300;   /* Light — never bump this to 400/500 */
+  --rt-weight-label:       700;
+
+  --rt-track-tight:        -0.5px;  /* used on Inter to mimic BMW Type's tight caps */
+  --rt-track-none:         0;
+  --rt-track-loose:        0.5px;
+  --rt-track-machined:     1.5px;   /* the "machined" all-caps tracking */
+
+  /* -----------------------------------------------------------
+   * MOTION — restrained, engineered
+   * ----------------------------------------------------------- */
+  --rt-ease:               cubic-bezier(0.4, 0, 0.2, 1);
+  --rt-duration-fast:      150ms;
+  --rt-duration-base:      200ms;
+  --rt-duration-photo:     400ms;
+}
+
+/* ============================================================
+ * SEMANTIC CSS — base element styles
+ * ============================================================ */
+
+html, body {
+  background: var(--rt-canvas);
+  color: var(--rt-on-dark);
+  font-family: var(--rt-font-text);
+  font-size: var(--rt-body-md-size);
+  font-weight: var(--rt-weight-body);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  margin: 0;
+}
+
+::selection {
+  background: var(--rt-m-red);
+  color: var(--rt-on-dark);
+}
+
+/* ---- Display headlines — UPPERCASE 700 by default ---- */
+.rt-display-xl,
+h1.rt-display {
+  font-family: var(--rt-font-display);
+  font-size: var(--rt-display-xl-size);
+  font-weight: var(--rt-weight-display);
+  line-height: 1.0;
+  letter-spacing: var(--rt-track-tight);
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.rt-display-lg,
+h2.rt-display {
+  font-family: var(--rt-font-display);
+  font-size: var(--rt-display-lg-size);
+  font-weight: var(--rt-weight-display);
+  line-height: 1.05;
+  letter-spacing: var(--rt-track-tight);
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.rt-display-md,
+h3.rt-display {
+  font-family: var(--rt-font-display);
+  font-size: var(--rt-display-md-size);
+  font-weight: var(--rt-weight-display);
+  line-height: 1.1;
+  letter-spacing: var(--rt-track-tight);
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.rt-display-sm,
+h4.rt-display {
+  font-family: var(--rt-font-display);
+  font-size: var(--rt-display-sm-size);
+  font-weight: var(--rt-weight-display);
+  line-height: 1.15;
+  letter-spacing: var(--rt-track-none);
+  text-transform: uppercase;
+  margin: 0;
+}
+
+/* ---- Titles ---- */
+.rt-title-lg {
+  font-family: var(--rt-font-display);
+  font-size: var(--rt-title-lg-size);
+  font-weight: var(--rt-weight-title);
+  line-height: 1.3;
+  letter-spacing: var(--rt-track-none);
+  margin: 0;
+}
+
+.rt-title-md {
+  font-family: var(--rt-font-display);
+  font-size: var(--rt-title-md-size);
+  font-weight: var(--rt-weight-subtitle);
+  line-height: 1.4;
+  margin: 0;
+}
+
+.rt-title-sm {
+  font-family: var(--rt-font-display);
+  font-size: var(--rt-title-sm-size);
+  font-weight: var(--rt-weight-subtitle);
+  line-height: 1.4;
+  margin: 0;
+}
+
+/* ---- Body ---- */
+.rt-body-md, p {
+  font-family: var(--rt-font-text);
+  font-size: var(--rt-body-md-size);
+  font-weight: var(--rt-weight-body);
+  line-height: 1.5;
+  margin: 0;
+  color: var(--rt-body);
+}
+
+.rt-body-sm {
+  font-family: var(--rt-font-text);
+  font-size: var(--rt-body-sm-size);
+  font-weight: var(--rt-weight-body);
+  line-height: 1.5;
+  color: var(--rt-body);
+}
+
+.rt-body-strong {
+  color: var(--rt-body-strong);
+  font-weight: var(--rt-weight-subtitle);
+}
+
+.rt-caption {
+  font-family: var(--rt-font-text);
+  font-size: var(--rt-caption-size);
+  font-weight: 400;
+  line-height: 1.4;
+  letter-spacing: var(--rt-track-loose);
+  color: var(--rt-muted);
+}
+
+/* ---- Labels & buttons — UPPERCASE, machined tracking ---- */
+.rt-label {
+  font-family: var(--rt-font-display);
+  font-size: var(--rt-label-size);
+  font-weight: var(--rt-weight-label);
+  line-height: 1.3;
+  letter-spacing: var(--rt-track-machined);
+  text-transform: uppercase;
+}
+
+.rt-nav-link {
+  font-family: var(--rt-font-display);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.4;
+  letter-spacing: var(--rt-track-loose);
+  color: var(--rt-on-dark);
+  text-decoration: none;
+}
+
+/* ============================================================
+ * COMPONENT PRIMITIVES
+ * ============================================================ */
+
+/* ---- Buttons ---- */
+.rt-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--rt-space-xs);
+  height: 48px;
+  padding: 0 var(--rt-space-xl);
+  border-radius: var(--rt-radius-none);
+  font-family: var(--rt-font-display);
+  font-size: var(--rt-button-size);
+  font-weight: var(--rt-weight-label);
+  letter-spacing: var(--rt-track-machined);
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color var(--rt-duration-base) var(--rt-ease),
+              color var(--rt-duration-base) var(--rt-ease),
+              opacity var(--rt-duration-base) var(--rt-ease);
+  border: 1px solid var(--rt-on-dark);
+  background: var(--rt-canvas);
+  color: var(--rt-on-dark);
+  white-space: nowrap;
+}
+.rt-btn:hover { background: var(--rt-on-dark); color: var(--rt-canvas); }
+.rt-btn:active { opacity: 0.85; }
+
+.rt-btn--outline {
+  background: transparent;
+  border: 1px solid var(--rt-on-dark);
+  color: var(--rt-on-dark);
+}
+.rt-btn--outline:hover { background: var(--rt-on-dark); color: var(--rt-canvas); }
+
+.rt-btn--on-light {
+  background: var(--rt-canvas);
+  color: var(--rt-on-dark);
+  border-color: var(--rt-canvas);
+}
+
+.rt-btn--icon {
+  width: 48px;
+  height: 48px;
+  padding: 0;
+  border-radius: var(--rt-radius-full);
+  background: var(--rt-surface-card);
+  border: none;
+  color: var(--rt-on-dark);
+}
+.rt-btn--icon:hover { background: var(--rt-surface-elevated); color: var(--rt-on-dark); }
+
+/* ---- Text link ---- */
+.rt-text-link {
+  font-family: var(--rt-font-display);
+  font-size: var(--rt-label-size);
+  font-weight: var(--rt-weight-label);
+  letter-spacing: var(--rt-track-machined);
+  text-transform: uppercase;
+  color: var(--rt-on-dark);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--rt-space-xs);
+  transition: opacity var(--rt-duration-base) var(--rt-ease);
+}
+.rt-text-link:hover { opacity: 0.7; }
+.rt-text-link::after { content: "→"; font-weight: 400; }
+
+/* ---- Inputs ---- */
+.rt-input {
+  height: 48px;
+  padding: 0 var(--rt-space-md);
+  background: var(--rt-surface-card);
+  color: var(--rt-on-dark);
+  border: 1px solid var(--rt-hairline);
+  border-radius: var(--rt-radius-none);
+  font-family: var(--rt-font-text);
+  font-size: var(--rt-body-md-size);
+  font-weight: var(--rt-weight-body);
+  outline: none;
+  transition: border-color var(--rt-duration-base) var(--rt-ease);
+}
+.rt-input::placeholder { color: var(--rt-muted); }
+.rt-input:focus { border-color: var(--rt-on-dark); }
+
+/* ---- The RT tricolor stripe ---- */
+.rt-stripe {
+  height: 4px;
+  width: 100%;
+  background: var(--rt-tricolor);
+  border: 0;
+}
+
+/* ---- Hairline divider ---- */
+.rt-hairline {
+  height: 1px;
+  width: 100%;
+  background: var(--rt-hairline);
+  border: 0;
+}
+
+/* ---- Category tab ---- */
+.rt-tab {
+  font-family: var(--rt-font-display);
+  font-size: var(--rt-label-size);
+  font-weight: var(--rt-weight-label);
+  letter-spacing: var(--rt-track-machined);
+  text-transform: uppercase;
+  color: var(--rt-body);
+  padding: var(--rt-space-sm) 0;
+  background: transparent;
+  border: 0;
+  border-bottom: 2px solid transparent;
+  cursor: pointer;
+  transition: color var(--rt-duration-base) var(--rt-ease),
+              border-color var(--rt-duration-base) var(--rt-ease);
+}
+.rt-tab:hover { color: var(--rt-on-dark); }
+.rt-tab[aria-selected="true"],
+.rt-tab.is-active {
+  color: var(--rt-on-dark);
+  border-bottom-color: var(--rt-on-dark);
+}
+
+/* ---- Focus ring (accessibility) ---- */
+.rt-btn:focus-visible,
+.rt-text-link:focus-visible,
+.rt-input:focus-visible,
+.rt-tab:focus-visible {
+  outline: 2px solid var(--rt-on-dark);
+  outline-offset: 4px;
+}
