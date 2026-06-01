@@ -8,6 +8,21 @@
 
 <link rel="stylesheet" href="project/assets/colors_and_type.css">
 
+<!-- Hotmart Checkout Widget -->
+<script type="text/javascript">
+function importHotmart(){
+  var imported = document.createElement('script');
+  imported.src = 'https://static.hotmart.com/checkout/widget.min.js';
+  document.head.appendChild(imported);
+  var link = document.createElement('link');
+  link.rel = 'stylesheet';
+  link.type = 'text/css';
+  link.href = 'https://static.hotmart.com/css/hotmart-fb.min.css';
+  document.head.appendChild(link);
+}
+importHotmart();
+</script>
+
 <style>
 *, *::before, *::after { box-sizing: border-box; }
 
@@ -1513,7 +1528,7 @@ footer {
         <div class="price-save">Save $10</div>
       </div>
 
-      <a href="#" class="cta-btn">
+      <a onclick="return false;" href="https://pay.hotmart.com/U106088940I?checkoutMode=2" class="cta-btn hotmart-fb hotmart__button-checkout">
         <span>Get The Recipe Guide</span>
         <span class="arrow">&rarr;</span>
       </a>
