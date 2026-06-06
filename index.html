@@ -73,10 +73,14 @@ img { display: block; max-width: 100%; }
 
 .live-dot {
   display: inline-block;
-  width: 6px; height: 6px;
-  background: var(--rt-m-red);
+  width: 8px; height: 8px;
+  background: #1887e2;
   border-radius: var(--rt-radius-full);
   animation: pulse 1.6s var(--rt-ease) infinite;
+  box-shadow:
+    0 0 6px rgba(24, 135, 226, 0.85),
+    0 0 14px rgba(24, 135, 226, 0.60),
+    0 0 28px rgba(24, 135, 226, 0.35);
 }
 @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.35} }
 
@@ -1371,7 +1375,7 @@ footer {
 <!-- URGENCY BAR -->
 <div class="urgency-bar">
   <div class="urgency-bar-inner">
-    <span class="urgency-left"><span id="live-viewers">216</span> Reading Right Now</span>
+    <span class="urgency-left"><span class="live-dot"></span><span id="live-viewers">216</span> Reading Right Now</span>
     <span class="urgency-right">
       <span>Launch Pricing Ends In</span>
       <span class="urgency-timer">
